@@ -1,15 +1,20 @@
 /* Only the index template loads this stylesheet. */
 .column-main {
-  width: 100% !important;
-  max-width: none !important;
-  flex: 0 0 100% !important;
+  width: 75% !important;
+  max-width: 75% !important;
+  flex: 0 0 75% !important;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
   gap: 1.5rem;
 }
 
-.column-left,
+.column-left {
+  width: 25% !important;
+  max-width: 25% !important;
+  flex: 0 0 25% !important;
+}
+
 .column-right,
 .column-right-shadow {
   display: none !important;
@@ -81,13 +86,34 @@
   margin-top: 0.5rem;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) and (min-width: 769px) {
   .column-main {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 65% !important;
+    max-width: 65% !important;
+    flex-basis: 65% !important;
+    grid-template-columns: 1fr;
+  }
+
+  .column-left {
+    width: 35% !important;
+    max-width: 35% !important;
+    flex-basis: 35% !important;
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
+  .section > .container > .columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-left,
+  .column-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
   .column-main {
     grid-template-columns: 1fr;
     gap: 1rem;
