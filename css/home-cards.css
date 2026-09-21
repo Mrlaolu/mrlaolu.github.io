@@ -20,6 +20,12 @@
   display: none !important;
 }
 
+.column-left [data-type="recent-posts"],
+.column-left [data-type="archives"],
+.column-left [data-type="tags"] {
+  display: none !important;
+}
+
 .column-main > .card {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,154 @@
+/* Post pages keep a broad reading column and a dedicated outline on the right. */
+.column-main {
+  min-width: 0;
+}
+
+.column-right-shadow {
+  display: none !important;
+}
+
+.column-right #toc {
+  max-height: calc(100vh - 1.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.column-right #toc .level-left,
+.column-right #toc .level-item {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.column-right #toc .menu-list li ul {
+  margin-left: 0.4rem;
+  padding-left: 0.4rem;
+}
+
+.column-right #toc .menu-list a.level {
+  display: block;
+  padding: 0.45rem 0.5rem;
+}
+
+.column-right #toc .menu-list a.level > .level-left {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.35rem;
+}
+
+.column-right #toc .menu-list a.level .level-item {
+  display: block;
+  margin: 0;
+}
+
+.column-right #toc .menu-list a.level .level-item:first-child {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-toc-button,
+.post-toc-mask {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .section > .container {
+    width: min(1440px, calc(100% - 2rem));
+    max-width: none;
+  }
+
+  .column-left {
+    width: 17% !important;
+    max-width: 17% !important;
+    flex: 0 0 17% !important;
+  }
+
+  .column-right {
+    width: 20% !important;
+    max-width: 20% !important;
+    flex: 0 0 20% !important;
+  }
+
+  .column-main {
+    width: 63% !important;
+    max-width: 63% !important;
+    flex: 0 0 63% !important;
+  }
+
+  .column-right.is-hidden-touch.is-hidden-desktop-only {
+    display: block !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 899px) {
+  .column-left {
+    display: none !important;
+  }
+
+  .column-main {
+    width: 75% !important;
+    max-width: 75% !important;
+    flex: 0 0 75% !important;
+  }
+
+  .column-right.is-hidden-touch.is-hidden-desktop-only {
+    display: block !important;
+    width: 25% !important;
+    max-width: 25% !important;
+    flex: 0 0 25% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-main .catalogue {
+    display: none !important;
+  }
+
+  .post-toc-button {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 98;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: #3273dc;
+    box-shadow: 0 8px 20px rgba(31, 45, 61, 0.24);
+    cursor: pointer;
+  }
+
+  .post-toc-mask {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .post-toc-open .post-toc-mask,
+  .post-toc-open #toc {
+    display: block !important;
+  }
+
+  .column-left {
+    display: none !important;
+  }
+
+  .column-main {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .column-right.is-hidden-touch.is-hidden-desktop-only {
+    display: block !important;
+    width: 0 !important;
+    height: 0;
+    padding: 0 !important;
+  }
+}
