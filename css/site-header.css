@@ -1,0 +1,4 @@
+/* The navigation menu starts at the left edge without the Icarus brand image. */
+.navbar-main .navbar-brand {
+  display: none !important;
+}

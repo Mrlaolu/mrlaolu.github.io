@@ -1,4 +1,8 @@
 /* Post pages keep a broad reading column and a dedicated outline on the right. */
+.article-view-count-old-hidden {
+  display: none !important;
+}
+
 .column-main {
   min-width: 0;
 }
