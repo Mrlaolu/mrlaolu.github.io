@@ -5,19 +5,16 @@
   const mode = script && script.dataset.pageviewMode;
   const endpoint = 'https://mrlaolu-waline.vercel.app/api/article';
 
-  function addCounter(article) {
-    const meta = article.querySelector('.article-meta .level-left');
-    if (!meta) return null;
-
+  function addCounter(container, className) {
     const item = document.createElement('span');
-    item.className = 'level-item article-view-count';
+    item.className = className;
     item.append('浏览量 ');
 
     const value = document.createElement('span');
     value.className = 'article-view-count-value';
     value.textContent = '…';
     item.append(value);
-    meta.append(item);
+    container.append(item);
     return value;
   }
 
@@ -45,7 +42,17 @@
     const counters = [...document.querySelectorAll('.column-main > .card article')]
       .map(article => {
         const link = article.querySelector('.title a[href]');
-        return link ? { path: articlePath(link), value: addCounter(article) } : null;
+        const more = article.querySelector('.article-more');
+        if (!link || !more) return null;
+
+        const actions = document.createElement('div');
+        actions.className = 'article-card-actions';
+        more.before(actions);
+        actions.append(more);
+        return {
+          path: articlePath(link),
+          value: addCounter(actions, 'article-view-count')
+        };
       })
       .filter(item => item && item.path && item.value);
     if (!counters.length) return;
@@ -66,8 +73,9 @@
     const article = document.querySelector('.column-main > .card article');
     if (!article) return;
 
-    const value = addCounter(article);
-    if (!value) return;
+    const meta = article.querySelector('.article-meta .level-left');
+    if (!meta) return;
+    const value = addCounter(meta, 'level-item article-view-count');
 
     // The old Busuanzi article count is a different data source. Keep its
     // site visitor counter, but show the same Waline count as the listing.
