@@ -94,6 +94,15 @@
     }
   }
 
-  if (mode === 'post') showPostCount();
-  else if (mode === 'listing') showListingCounts();
+  function start() {
+    if (document.readyState === 'loading') return;
+    if (mode === 'post') showPostCount();
+    else if (mode === 'listing') showListingCounts();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('readystatechange', start, { once: true });
+  } else {
+    start();
+  }
 })();
